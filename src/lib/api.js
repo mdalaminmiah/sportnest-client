@@ -1,14 +1,14 @@
 // Centralised API client for the SportNest backend.
 // Every request includes credentials so the HTTPOnly JWT cookie flows through.
 //
-// Requests are same-origin: they hit this Next.js app and are reverse-proxied
-// to the backend via the rewrites in next.config.mjs. This keeps the auth
-// cookie first-party. Leave NEXT_PUBLIC_API_URL empty in every environment;
-// override only if you ever need to bypass the proxy.
+// All requests are SAME-ORIGIN relative paths. This Next.js app reverse-proxies
+// `/api/*` to the backend (see next.config.mjs), which keeps the auth cookie
+// first-party and removes any need for cross-site CORS. We deliberately do NOT
+// read NEXT_PUBLIC_API_URL here — a stray absolute value would break the proxy
+// and re-introduce CORS. To point at a different backend, change
+// API_PROXY_TARGET in next.config.mjs instead.
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || '';
-
-const SPORTS = `${API_URL}/api/v1/sports`;
+const SPORTS = '/api/v1/sports';
 
 async function request(url, options = {}) {
     const res = await fetch(url, {
@@ -92,9 +92,10 @@ export function cancelBooking(id) {
 /* --------------------------- Google OAuth --------------------------- */
 
 // Kicks off Better Auth's Google flow and redirects the browser to Google.
+// Same-origin so the OAuth state cookies stay first-party through the proxy.
 export async function startGoogleLogin(callbackPath = '/') {
     const callbackURL = `${window.location.origin}${callbackPath}`;
-    const res = await fetch(`${API_URL}/api/auth/sign-in/social`, {
+    const res = await fetch('/api/auth/sign-in/social', {
         method: 'POST',
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
