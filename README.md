@@ -5,12 +5,10 @@ discover football turfs, tennis courts, swimming lanes and badminton halls, and
 reserve them for specific dates and time slots. This repository contains the
 **Next.js frontend**.
 
-## 🔗 Live URL
+## 🔗 Live Links
 
-- **Live Site:** https://your-sportnest-client.vercel.app _(update after deployment)_
-- **API Repository:** ../sportnest-api
-
-> Demo login → **demo@sportnest.com** / **Passw0rd**
+- **Live Site:** https://sportnest-client-rho.vercel.app
+- **Live API:** https://sportnest-api.vercel.app
 
 ## 🎯 Purpose
 
@@ -107,9 +105,9 @@ they behave as one origin.
 
 ### Client environment variables (Vercel → `sportnest-client` → Settings → Environment Variables)
 
-| Key                | Value                                | Scope              |
-| ------------------ | ------------------------------------ | ------------------ |
-| `API_PROXY_TARGET` | `https://<your-api>.vercel.app`      | Production, Preview |
+| Key                | Value                             | Scope               |
+| ------------------ | --------------------------------- | ------------------- |
+| `API_PROXY_TARGET` | `https://sportnest-api.vercel.app` | Production, Preview |
 
 - ❌ Do **NOT** add `NEXT_PUBLIC_API_URL` — an absolute value there bypasses the
   proxy and re-introduces a CORS error on Google sign-in.
@@ -119,8 +117,8 @@ they behave as one origin.
 ### API side (see `sportnest-api/README.md` for the full list)
 
 For Google OAuth to work behind the proxy, the **API** project needs
-`CLIENT_URL` **and** `BETTER_AUTH_URL` set to **this client's** origin
-(e.g. `https://<your-client>.vercel.app`).
+`CLIENT_URL` **and** `BETTER_AUTH_URL` set to this client's origin
+(`https://sportnest-client-rho.vercel.app`).
 
 ### Redeploy steps
 
