@@ -16,7 +16,7 @@ export function AuthProvider({ children }) {
     const fetchUser = async () => {
         try {
             const response = await fetch(
-                `${process.env.NEXT_PUBLIC_API_URL}/api/auth/me`,
+                `/api/auth/me`,
                 {
                     method: 'GET',
                     credentials: 'include', // Sends your 7-day cookie token automatically
@@ -59,7 +59,7 @@ export function AuthProvider({ children }) {
 
     const logout = async () => {
         try {
-            await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/logout`, {
+            await fetch(`/api/auth/logout`, {
                 method: 'POST',
                 credentials: 'include',
             });

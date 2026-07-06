@@ -18,7 +18,8 @@ import toast from 'react-hot-toast';
 import { startGoogleLogin } from '@/lib/api';
 import { Spinner } from '@/components/ui/Loading';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+// Same-origin: requests are reverse-proxied to the backend (see next.config.mjs).
+const API_URL = process.env.NEXT_PUBLIC_API_URL || '';
 
 export default function RegisterPage() {
     const router = useRouter();

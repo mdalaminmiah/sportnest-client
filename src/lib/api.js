@@ -1,8 +1,12 @@
 // Centralised API client for the SportNest backend.
 // Every request includes credentials so the HTTPOnly JWT cookie flows through.
+//
+// Requests are same-origin: they hit this Next.js app and are reverse-proxied
+// to the backend via the rewrites in next.config.mjs. This keeps the auth
+// cookie first-party. Leave NEXT_PUBLIC_API_URL empty in every environment;
+// override only if you ever need to bypass the proxy.
 
-const API_URL =
-    process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || '';
 
 const SPORTS = `${API_URL}/api/v1/sports`;
 
