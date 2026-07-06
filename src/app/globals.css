@@ -1,0 +1,66 @@
+@import 'tailwindcss';
+@plugin "daisyui";
+
+@layer base {
+    :root,
+    [data-theme='light'] {
+        --bg-main: #f8fafc;
+        --bg-card: #ffffff;
+        --border-color: #e2e8f0;
+        --text-primary: #0f172a;
+        --text-muted: #64748b;
+        --input-bg: #f1f5f9;
+        --primary-glow: rgba(59, 130, 246, 0.15);
+    }
+
+    [data-theme='dark'] {
+        --bg-main: #0b0f19;
+        --bg-card: #131a2c;
+        --border-color: #1e293b;
+        --text-primary: #f8fafc;
+        --text-muted: #94a3b8;
+        --input-bg: #1e293b;
+        --primary-glow: rgba(59, 130, 246, 0.35);
+    }
+
+    body {
+        background-color: var(--bg-main);
+        color: var(--text-primary);
+        transition:
+            background-color 0.3s ease,
+            color 0.3s ease;
+    }
+}
+
+/* Custom glowing focus utilities for our inputs */
+.premium-input-focus:focus {
+    background-color: var(--bg-card) !important;
+    border-color: #3b82f6 !important;
+    box-shadow: 0 0 0 4px var(--primary-glow);
+    transform: translateY(-1px);
+}
+
+/* Lightweight entrance animations used across cards, drawers and modals */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fadeIn {
+    animation: fadeIn 0.25s ease-out both;
+}
+
+/* Hide scrollbars on horizontal filter strips */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
